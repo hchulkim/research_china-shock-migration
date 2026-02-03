@@ -12,6 +12,9 @@ CLAUDE.md
 .claude/
 task.md
 
+# R profile file
+.Rprofile
+
 # History files
 .Rhistory
 .Rapp.history
