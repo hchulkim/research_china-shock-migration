@@ -196,6 +196,8 @@ project/
 
 ## References
 
+> We only list references related to data sources and software in this README. For the full references, check our paper's references section.
+
 ### Data Sources
 
 - **Lee, S. & Lee, H.** (2015). Delimitation of City-Regions Based on the Method of Travel-to-Working Area. *The Korea Spatial Planning Review*, 84, 165–189. [DOI: 10.15793/kspr.2015.84..010](https://doi.org/10.15793/kspr.2015.84..010)
