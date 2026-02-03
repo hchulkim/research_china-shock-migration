@@ -176,31 +176,27 @@ project/
 |-------|-------------|-------------|--------|
 | Table 1 | Descriptive statistics | `tab1.tex` | `13-descriptive.R` |
 | Table 2 | Main results | `tab2.tex` | `09-main-analysis.R` |
-| Table 3 | Additional results | `tab3.tex` | `02_analysis/table2and3.do` |
+| Table 3 | Additional results | `` | `` |
 
 ### Main Figures
 
 | Figure | Description | Output File | Script |
 |--------|-------------|-------------|--------|
-| Figure 1 | District and CZ maps | `map_district.png`, `map_cz.png` | `13-descriptive.R` |
-| Figure 2 | — | `fig2.png` | — |
-| Figures 3–5 | — | `fig3.png` – `fig5.png` | `02_analysis/fig3.do` |
+| Figure 1 | District and CZ maps | `fig1_1.png`, `fig1_2.png` | `13-descriptive.R` |
+| Figure 2 | Map of import and export shock | `fig2_1.png`, `fig_2_2.png` | — |
+| Figures 000 | — |  | `` |
 
 ### Appendix Tables
 
 | Table | Output File | Script |
 |-------|-------------|--------|
-| Tables A.1 – A.10 | `tab_a1.tex` – `tab_a10.tex` | `11-robustness-appendix-analysis.R` |
+| Tables 000 | `x` | `11-robustness-appendix-analysis.R` |
 
 ---
 
 ## References
 
 ### Data Sources
-
-- **Im, Z. J. & Kaihovaara, A.** (2020). Cleaned Blinder Offshorability Index for ISCO-08 and RTI Index. [DOI: 10.13140/RG.2.2.14045.95206/1](https://doi.org/10.13140/RG.2.2.14045.95206/1)
-
-- **Korea Labor Institute.** (2025). Korean Labor and Income Panel Study (KLIPS), Waves 1–4. https://www.kli.re.kr
 
 - **Lee, S. & Lee, H.** (2015). Delimitation of City-Regions Based on the Method of Travel-to-Working Area. *The Korea Spatial Planning Review*, 84, 165–189. [DOI: 10.15793/kspr.2015.84..010](https://doi.org/10.15793/kspr.2015.84..010)
 
