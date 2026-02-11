@@ -312,6 +312,7 @@ etable(s1a, s1b, s1c, s2a, s2b, s2c, s3a, s3b, s3c, s4a, s4b, s4c,
     signif.code = c(`***` = 0.01, `**` = 0.05, `*` = 0.1),
     depvar = TRUE,
     style.tex = style.tex("aer"),
+    extralines = list("IV" = c("ADH (import)", "ADH (export)", "JPN (export)", "ADH (import)", "ADH (export)", "JPN (export)", "ADH (import)", "ADH (export)", "JPN (export)", "ADH (import)", "ADH (export)", "JPN (export)")),
     file = here("output", "tables", "tab_appendix_balance_region.tex")
 )
 
@@ -379,14 +380,16 @@ shock_adh_m_2digit <- merge(shock_adh_m_2digit, wage, by = "ksic2", all.x = TRUE
 
 # run regression
 
-# export jpn
-s5a <- feols(log_wage ~ z_jp | period, data = shock_jpn_2digit)
+# import ADH
+s5a <- feols(log_wage ~ z_ad_m | period, data = shock_adh_m_2digit)
 
 # export ADH
 s5b <- feols(log_wage ~ z_ad_x | period, data = shock_adh_x_2digit)
 
-# import ADH
-s5c <- feols(log_wage ~ z_ad_m | period, data = shock_adh_m_2digit)
+# export jpn
+s5c <- feols(log_wage ~ z_jp | period, data = shock_jpn_2digit)
+
+
 
 # read the computer use data
 computer <- fread(here("data", "covariates", "computer_use_by_industry_2000.csv"))[, .(ksic2 = as.character(industry_code_2d), computer_share = daily_computer_share)]
@@ -400,14 +403,14 @@ shock_adh_m_2digit <- merge(shock_adh_m_2digit, computer, by = "ksic2", all.x = 
 
 # run balance test
 
-# export jpn
-s6a <- feols(computer_share ~ z_jp | period, data = shock_jpn_2digit)
+# import ADH
+s6a <- feols(computer_share ~ z_ad_m | period, data = shock_adh_m_2digit)
 
 # export ADH
 s6b <- feols(computer_share ~ z_ad_x | period, data = shock_adh_x_2digit)
 
-# import ADH
-s6c <- feols(computer_share ~ z_ad_m | period, data = shock_adh_m_2digit)
+# export jpn
+s6c <- feols(computer_share ~ z_jp | period, data = shock_jpn_2digit)
 
 
 
@@ -424,5 +427,6 @@ etable(s5a, s5b, s5c, s6a, s6b, s6c,
     signif.code = c(`***` = 0.01, `**` = 0.05, `*` = 0.1),
     depvar = TRUE,
     style.tex = style.tex("aer"),
+    extralines = list("IV" = c("ADH (import)", "ADH (export)", "JPN (export)", "ADH (import)", "ADH (export)", "JPN (export)")),
     file = here("output", "tables", "tab_appendix_balance_industry.tex")
 )
