@@ -200,7 +200,9 @@ project/
 
 ---
 
-## References
+## References (for data and software)[^1]
+
+[^1]: For literature reference, check the **References** section in the paper.
 
 ### Data Sources
 
