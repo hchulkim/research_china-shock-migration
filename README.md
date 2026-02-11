@@ -1,7 +1,7 @@
 # The China Shock and Internal Migration: Evidence from Bilateral Migration Flows
 
 [![R](https://img.shields.io/badge/R-4.5.0-blue.svg)](https://www.r-project.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-yellow.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS-lightgrey.svg)]()
 
 > Replication package for "The China Shock and Internal Migration: Evidence from Bilateral Migration Flows"
