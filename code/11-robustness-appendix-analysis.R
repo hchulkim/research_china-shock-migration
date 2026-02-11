@@ -25,9 +25,6 @@
 #   - output/tables/tab_appendix_control.tex
 #   - output/tables/tab_appendix_balance_region.tex
 #   - output/tables/tab_appendix_balance_industry.tex
-#   - output/tables/tab_gender_perperiod.tex
-#   - output/tables/tab_age_p1.tex
-#   - output/tables/tab_age_p2.tex
 ###############################################################################
 
 # Load packages
