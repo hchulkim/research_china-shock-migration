@@ -1,9 +1,9 @@
 
 if (!require(here)) {
-	# if using local machine that has here R package
+	# if you don't have here installed or if you are using Docker
 	path_default_nix = "."
 } else {
-	# if you don't have here installed or if you are using Docker
+	# if using local machine that has here R package
 	library(here)
 
 	path_default_nix <- here() 	
