@@ -56,7 +56,7 @@ This replication package contains all code necessary to reproduce the analysis i
 | Component | Version/Details |
 |-----------|-----------------|
 | R | 4.5.0 (tested) |
-| Package Manager | [`rix`](https://docs.ropensci.org/rix/articles/getting-started.html) |
+| Package Manager | [`rix`](https://docs.ropensci.org/rix/articles/getting-started.html) (nix) |
 | Build System | GNU Make |
 | Shell | Bash (Linux/Unix) |
 
