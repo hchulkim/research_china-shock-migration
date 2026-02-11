@@ -263,7 +263,7 @@ s1e <- safe_feols(
 etable(s1a, s1b, s1c, s1d, s1e,
     tex = TRUE,
     se.below = TRUE,
-    headers = list(Age = list("25-34" = 1, "35-44" = 1, "45-54" = 1, "55-64" = 1, "65+" = 1)),
+    headers = list("Age" = list("25-34" = 1, "35-44" = 1, "45-54" = 1, "55-64" = 1, "65+" = 1)),
     fitstat = c("n", "ivf"),
     drop = "local",
     digits = 3,
