@@ -7,11 +7,6 @@
 # rix/nix related folder
 result
 
-# claude related folder
-CLAUDE.md
-.claude/
-task.md
-
 # R profile file
 .Rprofile
 
