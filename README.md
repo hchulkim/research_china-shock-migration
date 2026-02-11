@@ -170,24 +170,17 @@ project/
 
 ## Output Files
 
-### Main Tables
+### Tables
 
 | Table | Description | Output File | Script |
 |-------|-------------|-------------|--------|
 | Table 1 | Korea-China trade descriptive statistics | `tab1.tex` | `13-descriptive.R` |
 | Table 2 | Main IV regression results | `tab2.tex` | `09-main-analysis.R` |
-| Table 2 (First stage) | First-stage results (ADH IV) | `table2_firststage_s1a.tex` | `09-main-analysis.R` |
-| Table 2 (First stage) | First-stage results (Mixed IV) | `table2_firststage_s1b.tex` | `09-main-analysis.R` |
+| Table 3 | Effects by age group | `tab_age.tex` | `10-hetero-analysis.R` |
+| Table 4 | Effects for single-person households | `tab_age_single.tex` | `10-hetero-analysis.R` |
+| Table 5 | Effects for multi-person households | `tab_age_multi.tex` | `10-hetero-analysis.R` |
 
-### Heterogeneous Effects Tables
-
-| Table | Description | Output File | Script |
-|-------|-------------|-------------|--------|
-| Age heterogeneity | Effects by age group | `tab_age.tex` | `10-hetero-analysis.R` |
-| Single-person HH | Effects for single-person households | `tab_age_single.tex` | `10-hetero-analysis.R` |
-| Multi-person HH | Effects for multi-person households | `tab_age_multi.tex` | `10-hetero-analysis.R` |
-
-### Main Figures
+### Figures
 
 | Figure | Description | Output File | Script |
 |--------|-------------|-------------|--------|
@@ -198,19 +191,18 @@ project/
 
 | Table | Description | Output File | Script |
 |-------|-------------|-------------|--------|
-| Robustness (controls) | Additional control variables | `tab_appendix_control.tex` | `11-robustness-appendix-analysis.R` |
-| Balance (regional) | Regional balance test | `tab_appendix_balance_region.tex` | `11-robustness-appendix-analysis.R` |
-| Balance (industry) | Industry balance test | `tab_appendix_balance_industry.tex` | `11-robustness-appendix-analysis.R` |
+| Table A.1 | Summary statistics | numbers in the table computed in `13-descriptive.R` | `13-descriptive.R` |
+| Table B.1 | First-stage results (ADH IV) | `table2_firststage_s1a.tex` | `09-main-analysis.R` |
+| Table B.2 | First-stage results (Mixed IV) | `table2_firststage_s1b.tex` | `09-main-analysis.R` |
+| Table C.1 | Regional balance test | `tab_appendix_balance_region.tex` | `11-robustness-appendix-analysis.R` |
+| Table C.2 | Industry balance test | `tab_appendix_balance_industry.tex` | `11-robustness-appendix-analysis.R` |
+| Table C.3 | Additional control variables | `tab_appendix_control.tex` | `11-robustness-appendix-analysis.R` |
 
 ---
 
 ## References
 
 ### Data Sources
-
-- **Im, Z. J. & Kaihovaara, A.** (2020). Cleaned Blinder Offshorability Index for ISCO-08 and RTI Index. [DOI: 10.13140/RG.2.2.14045.95206/1](https://doi.org/10.13140/RG.2.2.14045.95206/1)
-
-- **Korea Labor Institute.** (2025). Korean Labor and Income Panel Study (KLIPS), Waves 1–4. https://www.kli.re.kr
 
 - **Lee, S. & Lee, H.** (2015). Delimitation of City-Regions Based on the Method of Travel-to-Working Area. *The Korea Spatial Planning Review*, 84, 165–189. [DOI: 10.15793/kspr.2015.84..010](https://doi.org/10.15793/kspr.2015.84..010)
 
