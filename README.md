@@ -104,6 +104,10 @@ The code was mainly tested on the following local system:
 | "Crosswalk between *change in administrative districts of South Korea over the years* and between *institutional differences in region codes*" | `region_stat.xlsx`; `region_kosis.xlsx` | `data/concordance/region` | TRUE | Due to (1) changes in administrative district boundaries and (2) differing numeric codes assigned by two institutions in South Korea—Statistics Korea and the Ministry of the Interior and Safety—it is necessary to establish a consistent concordance of districts in the data. We also need to crosswalk region codes provided by different institutions. In order to accomplish this, the authors have created their own crosswalk tables which is based on [https://kssc.kostat.go.kr:8443/ksscNew_web/index.jsp#](https://kssc.kostat.go.kr:8443/ksscNew_web/index.jsp#). `region_stat.xlsx` table crosswalks the changes in administrative district and `region_kosis.xlsx` crosswalks two different region codes provided by two institutions. In the end, an unique code was assigned to each unit of analysis to ensure consistency across the timeline. For more detail on this matter, you can check out the Appendix in the paper. We have also included files related to this crosswalk in this archive. |
 | "Crosswalk between ISCO and KSCO" | `isco_ksco.xls`  | `data/concordance/ksco` | TRUE | Occupation classification crosswalk between ISCO and KSCO was obtained from Statistics Korea. Specifically, we used the ISCO-KSCO conversion tables available at [https://kssc.kostat.go.kr:8443/ksscNew_web/index.jsp#](https://kssc.kostat.go.kr:8443/ksscNew_web/index.jsp#). This data is publicly available without login. Using the conversion table data, we created `offshore.xlsx` which calculates offshorability index for KSCO occupation code. A copy of the conversion file used in this study is included as part of this archive. |
 
+<!-- 
+| "Covariates for control variables and balance test" | TBA | `data/covariates` | TRUE | Covariates used as control variables and for balance test were retrieved from "Population and housing census" by Statistics of Korea (KOSTAT, 2025), "Korean Labor and Income Panel Study (KLIPS)", and Im, Z. J. & Kaihovaara (2020), which were retrieved from both https://kosis.kr/index/index.do, https://mdis.kostat.go.kr, https://www.kli.re.kr/klips and https://researchportal.helsinki.fi/en/datasets/offshorability-and-rti-indices?utm_source=chatgpt.com. While the data are publicly available, some data requires user registration. A copy of the data used in this study is included in this archive. | 
+-->
+
 ---
 
 ## Replication Instructions
@@ -133,7 +137,7 @@ If you prefer to run scripts individually, execute them in numerical order from 
 
 ```bash
 Rscript code/01-concordance-hs-isic.R
-Rscript code/02-concordance-isic-ksic.R
+Rscript code/02-concordance-isic-ksic-table.R
 # ... continue in sequence
 ```
 
@@ -149,9 +153,9 @@ project/
 ├── code/
 │   ├── raw-data-download.R          # ⚠️ DO NOT RUN (API data download)
 │   ├── 01-concordance-hs-isic.R     # HS → ISIC crosswalk
-│   ├── 02-concordance-isic-ksic.R   # ISIC → KSIC crosswalk
-│   ├── 03-concordance-ksic-ksic.R   # KSIC version crosswalk
-│   ├── 04-concordance-est-district.R    # District codes (establishments)
+│   ├── 02-concordance-isic-ksic-table.R # ISIC → KSIC crosswalk
+│   ├── 03-concordance-est-district.R    # District codes (establishments)
+│   ├── 04-concordance-ksic-ksic.R       # KSIC version crosswalk
 │   ├── 05-concordance-migration-district.R  # District codes (migration)
 │   ├── 06-exposure-construction.R   # Trade shock exposure
 │   ├── 07-controls-construction.R   # Control variables
@@ -174,31 +178,43 @@ project/
 
 | Table | Description | Output File | Script |
 |-------|-------------|-------------|--------|
-| Table 1 | Descriptive statistics | `tab1.tex` | `13-descriptive.R` |
-| Table 2 | Main results | `tab2.tex` | `09-main-analysis.R` |
-| Table 3 | Additional results | `` | `` |
+| Table 1 | Korea-China trade descriptive statistics | `tab1.tex` | `13-descriptive.R` |
+| Table 2 | Main IV regression results | `tab2.tex` | `09-main-analysis.R` |
+| Table 2 (First stage) | First-stage results (ADH IV) | `table2_firststage_s1a.tex` | `09-main-analysis.R` |
+| Table 2 (First stage) | First-stage results (Mixed IV) | `table2_firststage_s1b.tex` | `09-main-analysis.R` |
+
+### Heterogeneous Effects Tables
+
+| Table | Description | Output File | Script |
+|-------|-------------|-------------|--------|
+| Age heterogeneity | Effects by age group | `tab_age.tex` | `10-hetero-analysis.R` |
+| Single-person HH | Effects for single-person households | `tab_age_single.tex` | `10-hetero-analysis.R` |
+| Multi-person HH | Effects for multi-person households | `tab_age_multi.tex` | `10-hetero-analysis.R` |
 
 ### Main Figures
 
 | Figure | Description | Output File | Script |
 |--------|-------------|-------------|--------|
-| Figure 1 | District and CZ maps | `fig1_1.png`, `fig1_2.png` | `13-descriptive.R` |
-| Figure 2 | Map of import and export shock | `fig2_1.png`, `fig_2_2.png` | — |
-| Figures 000 | — |  | `` |
+| Figure 1 | District and commuting zone maps | `fig1_1.png`, `fig1_2.png` | `13-descriptive.R` |
+| Figure 2 | Trade exposure maps | `fig2_1.png`, `fig2_2.png` | `13-descriptive.R` |
 
 ### Appendix Tables
 
-| Table | Output File | Script |
-|-------|-------------|--------|
-| Tables 000 | `x` | `11-robustness-appendix-analysis.R` |
+| Table | Description | Output File | Script |
+|-------|-------------|-------------|--------|
+| Robustness (controls) | Additional control variables | `tab_appendix_control.tex` | `11-robustness-appendix-analysis.R` |
+| Balance (regional) | Regional balance test | `tab_appendix_balance_region.tex` | `11-robustness-appendix-analysis.R` |
+| Balance (industry) | Industry balance test | `tab_appendix_balance_industry.tex` | `11-robustness-appendix-analysis.R` |
 
 ---
 
 ## References
 
-> We only list references related to data sources and software in this README. For the full references, check our paper's references section.
-
 ### Data Sources
+
+- **Im, Z. J. & Kaihovaara, A.** (2020). Cleaned Blinder Offshorability Index for ISCO-08 and RTI Index. [DOI: 10.13140/RG.2.2.14045.95206/1](https://doi.org/10.13140/RG.2.2.14045.95206/1)
+
+- **Korea Labor Institute.** (2025). Korean Labor and Income Panel Study (KLIPS), Waves 1–4. https://www.kli.re.kr
 
 - **Lee, S. & Lee, H.** (2015). Delimitation of City-Regions Based on the Method of Travel-to-Working Area. *The Korea Spatial Planning Review*, 84, 165–189. [DOI: 10.15793/kspr.2015.84..010](https://doi.org/10.15793/kspr.2015.84..010)
 

@@ -1,6 +1,13 @@
-library(here)
 
-path_default_nix <- here() 
+if (!require(here)) {
+	# if using local machine that has here R package
+	path_default_nix = "."
+} else {
+	# if you don't have here installed or if you are using Docker
+	library(here)
+
+	path_default_nix <- here() 	
+}
 
 library(rix)
 
@@ -23,3 +30,4 @@ rix(date = "2025-09-09",
     project_path = path_default_nix,
     overwrite = TRUE,
     print = TRUE)
+
