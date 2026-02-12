@@ -59,6 +59,9 @@ This replication package contains all code necessary to reproduce the analysis i
 | Package Manager | [`rix`](https://docs.ropensci.org/rix/articles/getting-started.html) (nix) |
 | Build System | GNU Make |
 | Shell | Bash (Linux/Unix) |
+| Docker *(optional)* | Any recent version supporting `docker build` and `docker run` |
+
+> **Docker alternative:** If you prefer not to install Nix directly on your machine, a `Dockerfile` is provided that sets up the full reproducible environment (Ubuntu + Nix + rix) inside a container. See the [Replication Instructions](#replication-instructions) section for details.
 
 ### Hardware Requirements
 
@@ -126,6 +129,22 @@ nix-shell
 # 5. Run the full pipeline
 make
 ```
+
+### Alternative: Docker
+
+If you do not want to install Nix on your host machine, you can use Docker to run the entire pipeline in an isolated container. This approach is especially encouraged if you want full reproducibility, or if you are on Windows or macOS where environment differences can sometimes cause unexpected issues. Docker ensures a consistent Linux-based environment regardless of your host OS. The provided `Dockerfile` builds an Ubuntu image, installs Nix and the rix-generated R environment, and runs `make all` automatically.
+
+```bash
+# 1. Build the Docker image (this will compile the environment and run the full pipeline)
+docker build -t china-shock .
+
+# 2. Run a container and copy the output to a local shared folder
+docker run -v "$(pwd)/shared_folder:/shared_folder" china-shock
+```
+
+The `docker run` command mounts a local `shared_folder/` directory and copies the pipeline output (tables and figures) into it.
+
+> **Note:** The Docker build requires substantial time and disk space, as it installs Nix, downloads all R packages, and executes the full analysis pipeline during the image build step. Make sure Docker has access to enough memory (64GB recommended) and storage.
 
 ### Manual Execution
 
