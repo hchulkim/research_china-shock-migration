@@ -26,7 +26,6 @@
 ###############################################################################
 
 # Load required packages for data manipulation and Excel file reading
-if (!require("pacman")) install.packages("pacman")
 pacman::p_load(here, readr, data.table, tidyfast, stringr)
 
 # load controls for weights, local share, etc

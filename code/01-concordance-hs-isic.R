@@ -16,10 +16,8 @@
 #   - data/temp/comtrade_isic4.csv
 ###############################################################################
 
-if (!require(pacman)) install.packages("pacman")
-p_load(fs, here, data.table, concordance, stringr, glue, purrr, dplyr, tidyr, comtradr)
-
-here::i_am("code/01-concordance-hs-isic.R")
+# load packages
+pacman::p_load(fs, here, data.table, concordance, stringr, glue, purrr, dplyr, tidyr, comtradr)
 
 
 # Define countries for analysis - developed economies for comparison with Korea

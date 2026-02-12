@@ -27,7 +27,8 @@
 #   - output/figures/fig2_2.png
 ###############################################################################
 
-p_load(here, data.table, purrr, glue, stringr, kableExtra, comtradr, sf, ggplot2, readxl, dplyr, rmapshaper, tradestatistics)
+# load packages
+pacman::p_load(here, data.table, purrr, glue, stringr, kableExtra, comtradr, sf, ggplot2, readxl, dplyr, rmapshaper, tradestatistics)
 
 
 ### Table 1: Value of trades for Korea (1990, 2001, 2010, 2019)
@@ -136,7 +137,7 @@ ggplot() +
     fill = "gray", color = "black"
   ) +
   theme_void()
-ggsave(here("output", "figures", "fig1_1.png"), width = 10, height = 10)
+ggsave(here("output", "figures", "fig1_1.png"), width = 12, height = 12)
 
 # Generate commuting zone map (take out small island region)
 # Group by commuting zone ID to show functional economic regions
@@ -146,7 +147,7 @@ ggplot() +
     fill = "gray", color = "black"
   ) +
   theme_void()
-ggsave(here("output", "figures", "fig1_2.png"), width = 10, height = 10)
+ggsave(here("output", "figures", "fig1_2.png"), width = 12, height = 12)
 
 ### Figure 2: Map of trade shocks (2001-2010)
 
@@ -192,14 +193,26 @@ green_palette <- c("#E8F5E8", "#C8E6C9", "#A5D6A7", "#4CAF50") # Light to dark g
 ggplot() +
   geom_sf(data = cz_map |> filter(cz_id != 34), aes(fill = import_quantile)) +
   scale_fill_manual(values = green_palette, name = "Import Exposure\nQuantiles") +
-  theme_void()
-ggsave(here("output", "figures", "fig2_1.png"), width = 10, height = 10)
+  theme_void() +
+  theme(
+    legend.position = c(0.95, 0.05),
+    legend.justification = c(1, 0),
+    legend.text = element_text(size = 28),
+    legend.title = element_text(size = 28)
+  )
+ggsave(here("output", "figures", "fig2_1.png"), width = 12, height = 12)
 
 ggplot() +
   geom_sf(data = cz_map |> filter(cz_id != 34), aes(fill = export_quantile)) +
   scale_fill_manual(values = green_palette, name = "Export Exposure\nQuantiles") +
-  theme_void()
-ggsave(here("output", "figures", "fig2_2.png"), width = 10, height = 10)
+  theme_void() +
+  theme(
+    legend.position = c(0.95, 0.05),
+    legend.justification = c(1, 0),
+    legend.text = element_text(size = 28),
+    legend.title = element_text(size = 28)
+  )
+ggsave(here("output", "figures", "fig2_2.png"), width = 12, height = 12)
 
 
 ### Table A.1: Summary statistics
@@ -248,61 +261,3 @@ sd(export[, x_export_d])
 ## dependent variable summary statistics
 summary(dt_chg_adh[, .(migration_change)])
 sd(dt_chg_adh[, migration_change])
-
-
-## shift IV statistics
-
-# read in the share data
-share <- fread(here("data", "temp", "ssiv_share.csv"),
-  colClasses = list(character = c("ksic10"))
-)
-
-# get average
-share <- share[, .(share = mean(emp_share_1999, na.rm = TRUE)), by = "ksic10"]
-
-# read in the exposure shock data
-shock <- fread(here("data", "temp", "ssiv_shock_2001_2010_2019.csv"),
-  colClasses = list(character = c("ksic10"))
-)
-
-# export JPN
-shock_jpn <- shock[reporter_iso == "JPN" & flow_code == "X", ]
-
-shock_jpn <- shock_jpn[, .(shock_jp = sum(shock, na.rm = TRUE)), by = .(ksic10, period)]
-
-# export ADH
-shock_adh_x <- shock[reporter_iso %in% c("AUS", "DNK", "FIN", "DEU", "NZL", "ESP", "CHE") & flow_code == "X", ]
-
-shock_adh_x <- shock_adh_x[, .(shock_ad = sum(shock, na.rm = TRUE)), by = .(ksic10, period)]
-
-# import ADH
-shock_adh_m <- shock[reporter_iso %in% c("AUS", "DNK", "FIN", "DEU", "NZL", "ESP", "CHE") & flow_code == "M", ]
-
-shock_adh_m <- shock_adh_m[, .(shock_ad = sum(shock, na.rm = TRUE)), by = .(ksic10, period)]
-
-# merge the data
-shock_jpn <- merge(shock_jpn, share, by = "ksic10", all.x = TRUE)
-shock_adh_x <- merge(shock_adh_x, share, by = "ksic10", all.x = TRUE)
-shock_adh_m <- merge(shock_adh_m, share, by = "ksic10", all.x = TRUE)
-
-# calculate the instrumental variable
-shock_jpn[!is.na(share) & !is.na(shock_jp), z_jp := shock_jp * share]
-shock_adh_x[!is.na(share) & !is.na(shock_ad), z_ad_x := shock_ad * share]
-shock_adh_m[!is.na(share) & !is.na(shock_ad), z_ad_m := shock_ad * share]
-
-# z-score normalize the instrumental variable
-shock_jpn[, z_jp := (z_jp - mean(z_jp, na.rm = TRUE)) / sd(z_jp, na.rm = TRUE)]
-shock_adh_x[, z_ad_x := (z_ad_x - mean(z_ad_x, na.rm = TRUE)) / sd(z_ad_x, na.rm = TRUE)]
-shock_adh_m[, z_ad_m := (z_ad_m - mean(z_ad_m, na.rm = TRUE)) / sd(z_ad_m, na.rm = TRUE)]
-
-# summary statistics of z_jp
-summary(shock_jpn[, .(z_jp)], na.rm = TRUE)
-sd(shock_jpn[, z_jp], na.rm = TRUE)
-
-# summary statistics of z_ad_x
-summary(shock_adh_x[, .(z_ad_x)], na.rm = TRUE)
-sd(shock_adh_x[, z_ad_x], na.rm = TRUE)
-
-# summary statistics of z_ad_m
-summary(shock_adh_m[, .(z_ad_m)], na.rm = TRUE)
-sd(shock_adh_m[, z_ad_m], na.rm = TRUE)

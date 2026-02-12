@@ -19,7 +19,6 @@
 
 
 # Load required packages for data manipulation and file I/O
-if (!require(pacman)) install.packages("pacman")
 pacman::p_load(here, dplyr, readxl, stringr, readr)
 
 #-------------------- 

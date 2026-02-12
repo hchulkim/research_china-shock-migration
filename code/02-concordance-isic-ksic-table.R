@@ -17,10 +17,8 @@
 #   - data/temp/comtrade_ksic10.csv
 ###############################################################################
 
-if (!require("pacman")) install.packages("pacman")
+# load packages
 pacman::p_load(here, data.table, readxl, dplyr)
-
-here::i_am("code/02-concordance-isic-ksic-table.R")
 
 ## Create crosswalk table
 

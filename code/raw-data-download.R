@@ -16,8 +16,8 @@
 #   - data/comtrade/comtrade_{country}_{hs_code}.csv
 ###############################################################################
 
-if (!require(pacman)) install.packages("pacman")
-p_load(here, data.table, purrr, glue, comtradr)
+# load packages
+pacman::p_load(here, data.table, purrr, glue, comtradr)
 
 options(timeout = 600)
 

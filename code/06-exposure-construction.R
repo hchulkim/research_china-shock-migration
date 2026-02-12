@@ -20,10 +20,8 @@
 #   - data/temp/ssiv_share.csv
 ###############################################################################
 
-if (!require("pacman")) install.packages("pacman")
+# load packages
 pacman::p_load(here, data.table, tidyfast, tradestatistics)
-
-here::i_am("code/06-exposure-construction.R")
 
 ## Creating the exposure shock
 

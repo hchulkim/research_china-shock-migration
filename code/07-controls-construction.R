@@ -29,10 +29,8 @@
 #   - data/temp/migration_change.csv
 ###############################################################################
 
-if (!require("pacman")) install.packages("pacman")
+# load packages
 pacman::p_load(here, data.table, stringr, tidyfast, readr)
-
-here::i_am("code/07-controls-construction.R")
 
 
 # load cz data

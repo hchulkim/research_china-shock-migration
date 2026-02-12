@@ -22,11 +22,7 @@
 ###############################################################################
 
 # Load required packages for data manipulation and file I/O
-if (!require(pacman)) install.packages("pacman")
-p_load(here, readxl, dplyr, stringr, readr, purrr, data.table)
-
-# Declare this file location for relative path resolution
-here::i_am("code/05-concordance-migration-district.R")
+pacman::p_load(here, readxl, dplyr, stringr, readr, purrr, data.table)
 
 
 ####################################################################################

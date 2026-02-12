@@ -31,7 +31,6 @@
 pacman::p_load(here, readr, data.table, dplyr, tidyr, fixest, texreg, ggplot2)
 
 
-cat("=== Loading data ===\n")
 
 # load main data
 dt_adh <- fread(here("data", "proc", "baseline_data.csv"))
@@ -301,8 +300,9 @@ setFixest_dict(c(
     "log_wage" = "Log wage (1995)"
 ))
 
-# save balance test
-etable(s1a, s1b, s1c, s2a, s2b, s2c, s3a, s3b, s3c, s4a, s4b, s4c,
+
+# Panel A: College share + Foreign-born share
+etable(s1a, s1b, s1c, s2a, s2b, s2c,
     tex = TRUE,
     se.below = TRUE,
     drop.section = "fixef",
@@ -312,8 +312,23 @@ etable(s1a, s1b, s1c, s2a, s2b, s2c, s3a, s3b, s3c, s4a, s4b, s4c,
     signif.code = c(`***` = 0.01, `**` = 0.05, `*` = 0.1),
     depvar = TRUE,
     style.tex = style.tex("aer"),
-    extralines = list("IV" = c("ADH (import)", "ADH (export)", "JPN (export)", "ADH (import)", "ADH (export)", "JPN (export)", "ADH (import)", "ADH (export)", "JPN (export)", "ADH (import)", "ADH (export)", "JPN (export)")),
-    file = here("output", "tables", "tab_appendix_balance_region.tex")
+    extralines = list("IV" = c("ADH (import)", "ADH (export)", "JPN (export)", "ADH (import)", "ADH (export)", "JPN (export)")),
+    file = here("output", "tables", "tab_appendix_balance_region_a.tex")
+)
+
+# Panel B: Female employment share + Migration change
+etable(s3a, s3b, s3c, s4a, s4b, s4c,
+    tex = TRUE,
+    se.below = TRUE,
+    drop.section = "fixef",
+    fitstat = c("n"),
+    drop = c("local", "Constant"),
+    digits = 3,
+    signif.code = c(`***` = 0.01, `**` = 0.05, `*` = 0.1),
+    depvar = TRUE,
+    style.tex = style.tex("aer"),
+    extralines = list("IV" = c("ADH (import)", "ADH (export)", "JPN (export)", "ADH (import)", "ADH (export)", "JPN (export)")),
+    file = here("output", "tables", "tab_appendix_balance_region_b.tex")
 )
 
 # industry balance test

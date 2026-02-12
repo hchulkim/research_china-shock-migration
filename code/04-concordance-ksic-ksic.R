@@ -20,11 +20,8 @@
 #   - data/temp/est_region_industry_matched.csv
 ###############################################################################
 
-if (!require(pacman)) install.packages("pacman")
-p_load(here, data.table, readxl, zoo, dplyr, purrr, readr)
-
-# Declare this file location
-here::i_am("code/04-concordance-ksic-ksic.R")
+# load packages
+pacman::p_load(here, data.table, readxl, zoo, dplyr, purrr, readr)
 
 ### Create crosswalk tables
 
